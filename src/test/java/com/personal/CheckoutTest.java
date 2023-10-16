@@ -47,7 +47,7 @@ public class CheckoutTest {
         orderPage.order();
         cartPage.processCheckout();
         checkoutPage.fillFormCheckout();
-        Assert.assertEquals(checkoutPage.getThankyou(),"Thank you. Your order has been received");
+        Assert.assertEquals(checkoutPage.getThankyou(),"Thank you. Your order has been received.");
 
     }
 }

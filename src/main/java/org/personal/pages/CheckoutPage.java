@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.personal.drivers.DriverSingelton;
 
+import java.util.concurrent.TimeUnit;
+
 public class CheckoutPage {
 
     private WebDriver driver;
@@ -52,16 +54,13 @@ public class CheckoutPage {
 
     public void fillFormCheckout(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,1100)");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement checkboxConfrim = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(("//input[@id='terms']"))));
-        try {
-        Thread.sleep(3000);
+        js.executeScript("window.scrollBy(0,1100)");
 
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        checkboxConfrim.click();
+        js.executeScript("arguments[0].click();", checkboxConfrim);
+        js.executeScript("arguments[0].click();", btnPlaceOrder);
+
     }
 
     public String getThankyou(){
